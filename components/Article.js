@@ -89,6 +89,8 @@ const data = [
   }
 ];
 
+const div = document.querySelector('.articles');
+
 function articleMaker(obj) {
   //creating elements
   const article = document.createElement('div');
@@ -115,20 +117,26 @@ function articleMaker(obj) {
   firstParagraph.textContent = obj.firstParagraph;
   secondParagraph.textContent = obj.secondParagraph;
   thirdParagraph.textContent = obj.thirdParagraph;
+  expandBtn.textContent = '*';
   //adding an event listener
   expandBtn.addEventListener('click', () => {
-    expandBtn.classList.toggle('expandButton');
+    article.classList.toggle('article-open');
   })
   //returning article
   return article
 }
-const div = document.querySelector('.article');
-//creating a map funtion
 
+//creating a map funtion
+const articleElements = data.map(data => {
+  return articleMaker(data);
+})
 //creating a forEach loop
-data.forEach(elem => {
+articleElements.forEach(elem => {
   div.appendChild(elem);
 })
+
+
+
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
